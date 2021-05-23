@@ -20,17 +20,24 @@ namespace Business.Concrete
 
         public IResult Add(Product product)
         {
-            throw new NotImplementedException();
+            _productDal.Add(product);
+            return new SuccessResult(Messages.ProductAdded);
         }
 
         public IResult Delete(Product product)
         {
-            throw new NotImplementedException();
+            _productDal.Delete(product);
+            return new SuccessResult(Messages.ProductDeleted);
         }
 
         public IDataResult<List<Product>> GetAll()
         {
             return new SuccessDataResult<List<Product>>(_productDal.GetAll(),Messages.ProductGetAll);
+        }
+
+        public IDataResult<List<Product>> GetByCategoryId(int categoryId)
+        {
+            return new SuccessDataResult<List<Product>>(_productDal.GetAll(p => p.CategoryID == categoryId),Messages.CategoryListed);
         }
 
         public IDataResult<Product> GetById(int productId)
@@ -40,7 +47,8 @@ namespace Business.Concrete
 
         public IResult Update(Product product)
         {
-            throw new NotImplementedException();
+            _productDal.Update(product);
+            return new SuccessResult(Messages.ProductUpdated);
         }
     }
 }

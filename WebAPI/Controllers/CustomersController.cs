@@ -11,18 +11,17 @@ namespace WebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ProductsController : ControllerBase
+    public class CustomersController : ControllerBase
     {
-        IProductService _productService;
-        public ProductsController(IProductService productService)
+        ICustomerService _customerService;
+        public CustomersController(ICustomerService customerService)
         {
-            _productService = productService;
+            _customerService = customerService;
         }
-
         [HttpGet("getall")]
         public IActionResult GetAll()
         {
-            var result = _productService.GetAll();
+            var result = _customerService.GetAll();
             if (result.Success)
             {
                 return Ok(result);
@@ -32,53 +31,65 @@ namespace WebAPI.Controllers
         [HttpGet("getbyid")]
         public IActionResult GetById(int id)
         {
-            var result = _productService.GetById(id);
+            var result = _customerService.GetById(id);
             if (result.Success)
             {
                 return Ok(result);
             }
             return BadRequest(result);
         }
-        [HttpGet("getbycategoryid")]
-        public IActionResult GetByCategoryId(int id)
+        [HttpGet("getbycityname")]
+        public IActionResult GetByCityName(string cityName)
         {
-            var result = _productService.GetByCategoryId(id);
+            var result = _customerService.GetByCityName(cityName);
             if (result.Success)
             {
                 return Ok(result);
             }
             return BadRequest(result);
         }
-
+        [HttpGet("getbycountryname")]
+        public IActionResult GetByCountryName(string countryName)
+        {
+            var result = _customerService.GetByCountryName(countryName);
+            if (result.Success)
+            {
+                Ok(result);
+            }
+            return BadRequest(result);
+        }
         [HttpPost("add")]
-        public IActionResult Add(Product product)
+        public IActionResult Add(Customer customer)
         {
-            var result = _productService.Add(product);
+            var result = _customerService.Add(customer);
             if (result.Success)
             {
                 return Ok(result);
             }
             return BadRequest(result);
+
         }
         [HttpPost("update")]
-        public IActionResult Update(Product product)
+        public IActionResult Update(Customer customer)
         {
-            var result = _productService.Update(product);
+            var result = _customerService.Update(customer);
             if (result.Success)
             {
                 return Ok(result);
             }
             return BadRequest(result);
+
         }
         [HttpPost("delete")]
-        public IActionResult Delete(Product product)
+        public IActionResult Delete(Customer customer)
         {
-            var result = _productService.Delete(product);
+            var result = _customerService.Delete(customer);
             if (result.Success)
             {
                 return Ok(result);
             }
             return BadRequest(result);
+
         }
     }
 }

@@ -20,6 +20,16 @@ namespace Business.DependencyResolves.Autofac
             builder.RegisterType<ProductManager>().As<IProductService>().SingleInstance();
             builder.RegisterType<EfProductDal>().As<IProductDal>().SingleInstance();
 
+            builder.RegisterType<CategoryManager>().As<ICategoryService>().SingleInstance();
+            builder.RegisterType<EfCategoryDal>().As<ICategoryDal>().SingleInstance();
+
+            builder.RegisterType<SupplierManager>().As<ISupplierService>().SingleInstance();
+            builder.RegisterType<EfSupplierDal>().As<ISupplierDal>().SingleInstance();
+
+            builder.RegisterType<CustomerManager>().As<ICustomerService>().SingleInstance();
+            builder.RegisterType<EfCustomerDal>().As<ICustomerDal>().SingleInstance();
+
+
 
 
             var assembly = System.Reflection.Assembly.GetExecutingAssembly();
