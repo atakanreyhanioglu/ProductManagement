@@ -3,6 +3,7 @@ using Business.Constants;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concrete;
+using Entities.Dtos;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -35,6 +36,23 @@ namespace Business.Concrete
             return new SuccessDataResult<List<Product>>(_productDal.GetAll(),Messages.ProductGetAll);
         }
 
+        public IDataResult<List<ProductDetailDto>> GetAllProductsByCategoryId(int categoryId)
+        {
+            return new SuccessDataResult<List<ProductDetailDto>>(_productDal.GetProductDetails(p=>p.CategoryID==categoryId), Messages.GetAllProductsByCategoryId);
+        }
+
+        public IDataResult<List<ProductDetailDto>> GetAllProductsBySupplierId(int supplierId)
+        {
+            return new SuccessDataResult<List<ProductDetailDto>>(_productDal.GetProductDetails(p=>p.SupplierID==supplierId), Messages.GetAllProductsBySupplierId);
+
+        }
+
+        public IDataResult<List<ProductDetailDto>> GetAllProductsDetails()
+        {
+            return new SuccessDataResult<List<ProductDetailDto>>(_productDal.GetProductDetails(), Messages.ProductGetAll);
+
+        }
+
         public IDataResult<List<Product>> GetByCategoryId(int categoryId)
         {
             return new SuccessDataResult<List<Product>>(_productDal.GetAll(p => p.CategoryID == categoryId),Messages.CategoryListed);
@@ -43,6 +61,11 @@ namespace Business.Concrete
         public IDataResult<Product> GetById(int productId)
         {
             return new SuccessDataResult<Product>(_productDal.Get(p => p.ProductID == productId),Messages.ProductGetById);
+        }
+
+        public IDataResult<List<ProductDetailDto>> GetProductDetailsByProductId(int productId)
+        {
+            return new SuccessDataResult<List<ProductDetailDto>>(_productDal.GetProductDetails(p => p.ProductID == productId), Messages.ProductGetById);
         }
 
         public IResult Update(Product product)

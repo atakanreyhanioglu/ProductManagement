@@ -50,7 +50,8 @@ namespace Business.Constants
 
         public static string AllCustomersListed = "All Customers Listed!";
 
+        public static string GetAllProductsBySupplierId = "All Products Listed By Supplier ";
 
-
+        public static string GetAllProductsByCategoryId = "All Products Listed By Category ";
     }
 }

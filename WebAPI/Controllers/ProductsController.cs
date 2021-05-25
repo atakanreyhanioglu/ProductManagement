@@ -18,6 +18,46 @@ namespace WebAPI.Controllers
         {
             _productService = productService;
         }
+        [HttpGet("getalldetails")]
+        public IActionResult GetAllDetails()
+        {
+            var result = _productService.GetAllProductsDetails();
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
+        [HttpGet("getdetailsbyproductid")]
+        public IActionResult GetDetailsByProductId(int productId)
+        {
+            var result = _productService.GetProductDetailsByProductId(productId);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
+        [HttpGet("getallproductsbysupplierid")]
+        public IActionResult GetAllProductsBySupplierId(int supplierId)
+        {
+            var result = _productService.GetAllProductsBySupplierId(supplierId);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
+        [HttpGet("getallproductsbycategoryid")]
+        public IActionResult GetAllProductsByCategoryId(int categoryId)
+        {
+            var result = _productService.GetAllProductsByCategoryId(categoryId);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
 
         [HttpGet("getall")]
         public IActionResult GetAll()
