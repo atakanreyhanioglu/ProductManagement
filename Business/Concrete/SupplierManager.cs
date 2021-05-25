@@ -54,5 +54,6 @@ namespace Business.Concrete
             _supplierDal.Update(supplier);
             return new SuccessResult(Messages.SupplierUpdated);
         }
+
     }
 }

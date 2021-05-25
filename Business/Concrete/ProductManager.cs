@@ -1,4 +1,5 @@
 ﻿using Business.Abstract;
+using Business.BusinessAspects;
 using Business.Constants;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
@@ -68,6 +69,7 @@ namespace Business.Concrete
             return new SuccessDataResult<List<ProductDetailDto>>(_productDal.GetProductDetails(p => p.ProductID == productId), Messages.ProductGetById);
         }
 
+       // [SecuredOperation("admin")]
         public IResult Update(Product product)
         {
             _productDal.Update(product);
