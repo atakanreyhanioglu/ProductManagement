@@ -39,6 +39,8 @@ namespace Business.DependencyResolves.Autofac
 
 
 
+
+
             var assembly = System.Reflection.Assembly.GetExecutingAssembly();
 
             builder.RegisterAssemblyTypes(assembly).AsImplementedInterfaces()
